@@ -9,16 +9,16 @@ const {logErrors, wrapErrors, clientErrorHandler, errorHandler} = require('./uti
 const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi')
 const authApiRouter = require('./routes/api/auth')
 // static files
-app.use("/static", express.static(path.join(__dirname, 'public')))
+// app.use("/static", express.static(path.join(__dirname, 'public')))
 app.use(cors())
 // View engine setup
-app.set("views", path.join(__dirname, "views"))
-app.set('view engine', 'pug')
+// app.set("views", path.join(__dirname, "views"))
+// app.set('view engine', 'pug')
  
 app.use(express.json())
 
 // routes
-app.use('/products', productsRouter)
+// app.use('/products', productsRouter)
 app.use('/api/products', productsApiRouter)
 app.use('/api/auth', authApiRouter)
  
