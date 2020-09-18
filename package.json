@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index",
-    "build": "NODE_ENV=production cd public/assets && cleancss -o main.mincss main.css",
+    "build": "NODE_ENV=production cd public/assets",
     "dev": "nodemon index"
   },
   "keywords": [],
