@@ -2,9 +2,16 @@ const express = require('express')
 const router = express.Router()
 const ProductsServices = require('../../services/products')
 const passport = require('passport')
-
+const mercadopago = require('mercadopago')
+const {config} = require('../../config/index')
+const axios = require('axios')
 require('../../utils/auth/strategies/jwt')
 
+const TOKEN = config.accesTokenMP
+
+mercadopago.configure({
+    access_token: 'TEST-6738293582789370-101115-fc442f58b4592b86c0869921b2160a79-422885003'
+  });
 
 const productService = new ProductsServices()
 
@@ -71,6 +78,25 @@ router.delete('/:productId', passport.authenticate('jwt', {session: false}),asyn
         next(err)
     }
 })
+router.post('/pagar', async function(req, res, next) {
+    console.log('Hola')
+    let preference = {
+        items: [
+          {
+            title: 'Chancletas',
+            unit_price: 100,
+            quantity: 1,
+          }
+        ]
+      };
+      const respuesta = await mercadopago.preferences.create(preference)
+      res.status(200).json({
+          data: respuesta
+      })
+      
+      
+})
+
 
 
 module.exports= router;
