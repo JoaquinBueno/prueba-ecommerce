@@ -8,7 +8,7 @@ require('../../utils/auth/strategies/jwt')
 
 
 mercadopago.configure({
-    access_token: 'APP_USR-7b77c23f-b85c-46ed-852e-5cca8d6a6c1b'
+    access_token: 'APP_USR-5801127985980891-101015-8d518a538b15de449e725ccde902e060-584109445'
   });
 
 const productService = new ProductsServices()
