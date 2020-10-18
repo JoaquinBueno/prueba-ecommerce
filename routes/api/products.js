@@ -3,14 +3,12 @@ const router = express.Router()
 const ProductsServices = require('../../services/products')
 const passport = require('passport')
 const mercadopago = require('mercadopago')
-const {config} = require('../../config/index')
-const axios = require('axios')
+
 require('../../utils/auth/strategies/jwt')
 
-const TOKEN = config.accesTokenMP
 
 mercadopago.configure({
-    access_token: 'TEST-6738293582789370-101115-fc442f58b4592b86c0869921b2160a79-422885003'
+    access_token: 'APP_USR-7b77c23f-b85c-46ed-852e-5cca8d6a6c1b'
   });
 
 const productService = new ProductsServices()
@@ -79,13 +77,19 @@ router.delete('/:productId', passport.authenticate('jwt', {session: false}),asyn
     }
 })
 router.post('/pagar', async function(req, res, next) {
-    console.log('Hola')
+    const id = req.body._id
     let preference = {
+        back_urls: {
+            success: 'http://66.97.39.224/checkout/' + id,
+            failure: 'http://66.97.39.224/checkout/' + id,
+            pending: 'http://66.97.39.224/checkout/' + id
+        },
+        auto_return: "all",
         items: [
           {
-            title: 'Chancletas',
-            unit_price: 100,
-            quantity: 1,
+            title: req.body.title,
+            unit_price: req.body.valor,
+            quantity: req.body.cantidad,
           }
         ]
       };
@@ -96,7 +100,18 @@ router.post('/pagar', async function(req, res, next) {
       
       
 })
-
+router.post('/pedidoAgendado', async function(req, res, next){
+    const {body: pedido} = req
+    try {
+        const createdPedido = await productService.createPedido({pedido})
+        res.status(201).json({
+            data: createdPedido,
+            message: 'pedidos listed'
+        })
+    } catch(err){
+        next(err)
+    }
+})
 
 
 module.exports= router;

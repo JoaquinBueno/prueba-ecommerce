@@ -16,7 +16,7 @@ class ProductsService {
     }
 
     async getProduct({productId}){
-        const product = await this.mongoDB.get(this.collection, productId)
+        const product = await this.mongoDB.get(this.collection, productId) 
         return product || {}
     }
 
@@ -37,6 +37,16 @@ class ProductsService {
 
         return deletedProductId
     }
+    // async pedidoAprobado({pedido}) {
+    //     const createPedido = await this.mongoDB.create(this.anotherCollection, {pedido})
+
+    //     return createPedido
+    // }
+    // async createPedido({pedido}){
+    //     const createPedidoId = await this.mongoDB.create(this.anotherCollection, pedido)
+    //     console.log(pedido)
+    //     return createPedidotId
+    // }
 }
 
 module.exports=ProductsService
