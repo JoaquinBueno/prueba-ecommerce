@@ -80,9 +80,9 @@ router.post('/pagar', async function(req, res, next) {
     const id = req.body._id
     let preference = {
         back_urls: {
-            success: 'http://66.97.39.224/checkout/' + id,
-            failure: 'http://66.97.39.224/checkout/' + id,
-            pending: 'http://66.97.39.224/checkout/' + id
+            success: 'http://giraffeindumentaria.com/checkout/' + id,
+            failure: 'http://giraffeindumentaria.com/checkout/' + id,
+            pending: 'http://giraffeindumentaria.com/checkout/' + id
         },
         auto_return: "all",
         items: [
