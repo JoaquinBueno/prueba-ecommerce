@@ -13,8 +13,13 @@ const mercadopago = require('mercadopago')
 const pedidosApiRouter = require('./routes/api/pedidos')
 
 
-app.use(cors())
+// app.use(cors())
+app.use(express.static(path.join(__dirname, 'build')));
 
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+  
  
 app.use(express.json())
 mercadopago.configurations.setAccessToken(config.accesTokenMP);
@@ -25,9 +30,9 @@ app.use('/api/auth', authApiRouter)
 app.use('/api/pedidos', pedidosApiRouter)
 
 //redirect
-app.get('/', function(req, res){
-    res.redirect('/products')
-})
+// app.get('/', function(req, res){
+//     res.redirect('/products')
+// })
 
 app.use(function(req, res, next){
     if(isRequestAjaxOrApi(req)) {
