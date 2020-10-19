@@ -13,7 +13,7 @@ const mercadopago = require('mercadopago')
 const pedidosApiRouter = require('./routes/api/pedidos')
 
 
-// app.use(cors())
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function(req, res) {
