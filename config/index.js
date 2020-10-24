@@ -13,7 +13,6 @@ const config = {
     accesTokenMP: process.env.TEST_ACCESS_TOKEN,
     backBlazeID: process.env.B2_ID,
     backBlazeKey: process.env.B2_KEY,
-    backBlazeBucket: process.env.B2_BUCKET
 }
 
 module.exports = {config}
