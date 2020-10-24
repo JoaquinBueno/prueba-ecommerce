@@ -12,8 +12,22 @@ const {config} = require('./config/index')
 const mercadopago = require('mercadopago')
 const pedidosApiRouter = require('./routes/api/pedidos')
 
+const domainWhitelist = [
+    '[https://dominio-frontend]',
+];
 
-app.use(cors())
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (domainWhitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback (new Error('Not allowed by CORS'));
+        }
+    },
+    optionsSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function(req, res) {
