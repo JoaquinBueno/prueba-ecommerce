@@ -11,9 +11,25 @@ const authApiRouter = require('./routes/api/auth')
 const {config} = require('./config/index')
 const mercadopago = require('mercadopago')
 const pedidosApiRouter = require('./routes/api/pedidos')
+const b2Router = require('./routes/b2')
 
 
-app.use(cors())
+const domainWhitelist = [
+    'http://giraffeindumentaria.com',
+];
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (domainWhitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback (new Error('Not allowed by CORS'));
+        }
+    },
+    optionsSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function(req, res) {
@@ -28,7 +44,7 @@ mercadopago.configurations.setAccessToken(config.accesTokenMP);
 app.use('/api/products', productsApiRouter)
 app.use('/api/auth', authApiRouter)
 app.use('/api/pedidos', pedidosApiRouter)
-
+app.use('/', b2Router)
 //redirect
 // app.get('/', function(req, res){
 //     res.redirect('/products')
