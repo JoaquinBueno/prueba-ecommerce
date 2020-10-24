@@ -11,6 +11,8 @@ const authApiRouter = require('./routes/api/auth')
 const {config} = require('./config/index')
 const mercadopago = require('mercadopago')
 const pedidosApiRouter = require('./routes/api/pedidos')
+const b2Router = require('./routes/b2')
+
 
 const domainWhitelist = [
     '[https://dominio-frontend]',
@@ -42,6 +44,7 @@ mercadopago.configurations.setAccessToken(config.accesTokenMP);
 app.use('/api/products', productsApiRouter)
 app.use('/api/auth', authApiRouter)
 app.use('/api/pedidos', pedidosApiRouter)
+app.use('/', b2Router)
 
 //redirect
 // app.get('/', function(req, res){

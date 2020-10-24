@@ -10,7 +10,10 @@ const config = {
     authAdminPassword: process.env.AUTH_ADMIN_PASSWORD,
     authAdminEmail: process.env.AUTH_ADMIN_EMAIL,
     authJwtSecret: process.env.AUTH_JWT_SECRET,
-    accesTokenMP: process.env.TEST_ACCESS_TOKEN
+    accesTokenMP: process.env.TEST_ACCESS_TOKEN,
+    backBlazeID: process.env.B2_ID,
+    backBlazeKey: process.env.B2_KEY,
+    backBlazeBucket: process.env.B2_BUCKET
 }
 
 module.exports = {config}
