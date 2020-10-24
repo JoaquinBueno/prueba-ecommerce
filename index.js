@@ -15,9 +15,10 @@ const b2Router = require('./routes/b2')
 
 
 const domainWhitelist = [
-    'http://giraffeindumentaria.com',
-    'https://auth.mercadopago.com.ar',
-    'https://mercadopago.com.ar'
+    'http://giraffeindumentaria.com/',
+    'https://auth.mercadopago.com.ar/',
+    'https://mercadopago.com.ar.',
+    'https://api.mercadopago.com'
 ];
 
 const corsOptions = {
