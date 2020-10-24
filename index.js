@@ -19,7 +19,8 @@ const domainWhitelist = [
     'https://auth.mercadopago.com.ar',
     'https://mercadopago.com.ar',
     'https://api.mercadopago.com',
-    'https://mercadopago.com'
+    'https://mercadopago.com',
+    'https://api.mercadopago.com.ar'
 ];
 
 const corsOptions = {
