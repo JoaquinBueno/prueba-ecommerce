@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const api = express.Router()
 
 const {config} = require('../../config')
-
+ 
 // Basic Strategy
 require('../../utils/auth/strategies/basic')
 
