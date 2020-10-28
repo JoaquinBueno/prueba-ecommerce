@@ -53,7 +53,7 @@ router.post('/',async function(req, res, next){
         next(err)
     }
 })
-router.put('/:productId', passport.authenticate('jwt', {session: false}), async function(req, res, next){
+router.put('/:productId', async function(req, res, next){
     const {productId} = req.params
     const {body: product} = req
     try {
